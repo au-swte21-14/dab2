@@ -54,7 +54,7 @@ namespace EFCoreDab2
                 }
                 case "BookedRooms":
                 {
-                    var a = client.GetBookedRooms();
+                    var a = client.GetBookedRooms().Select(room => room.GetBookedRooms());
                     output = String.Join("\n", a);
                     break;
                 }

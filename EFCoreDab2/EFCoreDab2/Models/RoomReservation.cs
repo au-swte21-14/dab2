@@ -15,5 +15,11 @@ namespace EFCoreDab2.Models
 
         public virtual Member Member { get; set; }
         public virtual Room Room { get; set; }
+
+        public override string ToString()
+        {
+            var a = $"Id: {Id} RoomId: {RoomId} MemberId: {MemberId} StartTime: {StartTime} EndTime: {EndTime}\n";
+            return a;
+        }
     }
 }

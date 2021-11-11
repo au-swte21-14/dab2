@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.VisualBasic;
 
 #nullable disable
 
@@ -26,8 +28,16 @@ namespace EFCoreDab2.Models
 
         public override string ToString()
         {
-            return $"Name: {Name} Id: {Id} Limit: {Limit} Address {Address} Access: {Access}";
+            var a = $"Name: {Name} Id: {Id} Limit: {Limit} Address {Address} Access: {Access}\n";
+            return a;
         }
 
+        public string GetBookedRooms()
+        {
+            var a = $"Name: {Name} Address: {Address}\n";
+            a += String.Join("\n", RoomReservations);
+            return a;
+        }
+        
     }
 }
