@@ -11,6 +11,7 @@ entity municipality {
 entity society {
     * id : INT <<generated>>
     --
+    * municipalityId : INT <<FK>>
     * name : VARCHAR(200)
     * cvr : INT
     * address : VARCHAR(200)
