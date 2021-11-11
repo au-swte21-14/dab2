@@ -21,5 +21,12 @@ namespace EFCoreDab2.Models
 
         public virtual Society Society { get; set; }
         public virtual ICollection<RoomReservation> RoomReservations { get; set; }
+        
+        public override string ToString()
+        {
+            var a = $"MemberId: {Id} SocietyId: {SocietyId} IsChairman: {IsChairman} " +
+                    $"Name: {Name} Cpr: {Cpr} Address: {Address} Society: {Society} RoomRess: {RoomReservations}\n";
+            return a;
+        }
     }
 }

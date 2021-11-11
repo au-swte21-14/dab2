@@ -21,5 +21,12 @@ namespace EFCoreDab2.Models
 
         public virtual Municipality Municipality { get; set; }
         public virtual ICollection<Member> Members { get; set; }
+
+        public override string ToString()
+        {
+            var a = $"SocietyId: {Id} MunicipalityId: {MunicipalityId} Name: {Name} " +
+                    $"Cvr: {Cvr} Address: {Address} Activity: {Activity}\n";
+            return a;
+        }
     }
 }
