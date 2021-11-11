@@ -19,5 +19,10 @@ namespace EFCoreDab2.Models
 
         public virtual ICollection<Room> Rooms { get; set; }
         public virtual ICollection<Society> Societies { get; set; }
+
+        public override string ToString()
+        {
+            return $"Name: {Name} Id: {Id} Cvr: {Cvr}";
+        }
     }
 }

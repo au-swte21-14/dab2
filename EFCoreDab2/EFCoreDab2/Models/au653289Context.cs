@@ -17,21 +17,24 @@ namespace EFCoreDab2.Models
         {
         }
 
+        private string _optionsString;
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(_optionsString);
+            
+        }
+
+        public au653289Context(string server, string database, string user, string password)
+        {
+            _optionsString = $"Server={server};Database={database};User ID={user};Password={password}";
+        }
+
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<Municipality> Municipalities { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<RoomProperty> RoomProperties { get; set; }
         public virtual DbSet<RoomReservation> RoomReservations { get; set; }
         public virtual DbSet<Society> Societies { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=localhost;Database=au653289;User ID=SA;Password=Magnus1996");
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

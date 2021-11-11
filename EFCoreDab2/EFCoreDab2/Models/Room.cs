@@ -23,5 +23,11 @@ namespace EFCoreDab2.Models
         public virtual Municipality Municipality { get; set; }
         public virtual ICollection<RoomProperty> RoomProperties { get; set; }
         public virtual ICollection<RoomReservation> RoomReservations { get; set; }
+
+        public override string ToString()
+        {
+            return $"Name: {Name} Id: {Id} Limit: {Limit} Address {Address} Access: {Access}";
+        }
+
     }
 }
