@@ -37,12 +37,25 @@ namespace EFCoreDab2
                     options = o;
                 }); 
             DbClient client = new DbClient(options.Server, options.Database, options.Username, options.Password);
-            string output = "Available commands: Municipalities, Societies, BookedRooms";
+            string output = "Available commands: Municipalities, Societies, BookedRooms, All";
             switch (options.Command)
             {
+                case "All":
+                {
+                    output = "== MUNICIPALITIES == \n";
+                    var a = client.GetMunicipalities();
+                    output += String.Join("\n", a);
+                    output += "\n== SOCIETIES == \n";
+                    var b = client.GetSocieties();
+                    output += String.Join("\n", b);
+                    output += "\n== BOOKED ROOMS == \n";
+                    var c = client.GetBookedRooms().Select(room => room.GetBookedRooms());
+                    output += String.Join("\n", c);
+                    break;
+                }
                 case "Municipalities":
                 {
-                    var a = client.GetRooms();
+                    var a = client.GetMunicipalities();
                     output = String.Join("\n", a);
                     break;
                 }

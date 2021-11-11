@@ -25,7 +25,7 @@ namespace EFCoreDab2
 
         public IIncludableQueryable<Society, Municipality> GetSocieties()
         {
-            return _context.Societies
+            return _context.Societies.OrderBy(s => s.Activity)
                 .Include(society => society.Members
                     .Where(member => member.IsChairman == true))
                 .Include(society => society.Municipality);
@@ -37,13 +37,14 @@ namespace EFCoreDab2
                 .Include(room => room.Municipality);
         }
 
-        public IIncludableQueryable<Room, IEnumerable<Member>> GetBookedRooms()
+        public IQueryable<Room> GetBookedRooms()
         {
             return _context.Rooms
                 .Include(room => room.RoomReservations)
                 .ThenInclude(roomRes => roomRes.Member)
                 .ThenInclude(member => member.Society)
-                .ThenInclude(society => society.Members.Where(member => member.IsChairman == true));
+                .ThenInclude(society => society.Members.Where(member => member.IsChairman == true))
+                .Where(p => p.RoomReservations.Count > 0);
         }
     }
 }

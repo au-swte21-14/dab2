@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 #nullable disable
 
@@ -18,7 +19,10 @@ namespace EFCoreDab2.Models
 
         public override string ToString()
         {
-            var a = $"RoomResId: {Id} RoomId: {RoomId} MemberId: {MemberId} StartTime: {StartTime} EndTime: {EndTime}\n";
+            var society = Member?.Society;
+            var chairman = society?.Members?.First(m => m.IsChairman == true);
+            var a =
+                $"Booker: {Member?.Name}, Society: {society?.Name}, SocietyChairman: {chairman?.Name}, StartTime: {StartTime}, EndTime: {EndTime}\n";
             return a;
         }
     }
