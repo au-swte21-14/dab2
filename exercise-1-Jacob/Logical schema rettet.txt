@@ -1,0 +1,165 @@
+
+CREATE DATABASE AU593227_Assignment_DAB1
+GO
+
+USE AU593227_Assignment_DAB1
+GO
+
+--
+-- Create Table    : 'Municipality'
+-- MuniName        :
+-- ZipCode         :
+--
+CREATE TABLE Municipality (
+    MuniName       NVARCHAR(255) NOT NULL,
+    ZipCode        INT NOT NULL UNIQUE,
+CONSTRAINT pk_Municipality PRIMARY KEY CLUSTERED (ZipCode))
+GO
+
+--
+-- Create Table    : 'Chairman'
+-- FullName        :
+-- CPR             :
+-- Address         :
+--
+CREATE TABLE Chairman (
+    FullName       NVARCHAR(255) NOT NULL,
+    CPR            INT NOT NULL UNIQUE,
+    Address        NVARCHAR(255) NOT NULL,
+CONSTRAINT pk_Chairman PRIMARY KEY CLUSTERED (CPR))
+GO
+
+--
+-- Create Table    : 'ActLocation'
+-- Type            :
+-- Equipment       :
+-- Capacity        :
+-- Address         :
+-- ZipCode         :  (references Municipality.ZipCode)
+-- WaterFountain   :
+-- Toilets         :
+-- Chairs          :
+
+--
+CREATE TABLE ActLocation (
+    Type           NVARCHAR(255) NOT NULL,
+    Equipment      NVARCHAR(255) NOT NULL,
+    Capacity       INT NOT NULL,
+    Address        NVARCHAR(255) NOT NULL,
+    ZipCode        INT NOT NULL,
+    WaterFountain  CHAR(10) NOT NULL,
+    Toilets        CHAR(10) NOT NULL,
+    Chairs         NVARCHAR(255) NOT NULL,
+CONSTRAINT pk_ActLocation PRIMARY KEY CLUSTERED (Address),
+CONSTRAINT fk_ActLocation FOREIGN KEY (ZipCode)
+    REFERENCES Municipality (ZipCode)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+GO
+
+--
+-- Create Table    : 'Society'
+-- SocName         :
+-- Soc_CVR         :
+-- SocAddress      :
+-- CPR             :  (references Chairman.CPR)
+-- ZipCode         :  (references Municipality.ZipCode)
+--
+CREATE TABLE Society (
+    SocName        NVARCHAR(255) NOT NULL,
+    Soc_CVR        INT NOT NULL UNIQUE,
+    SocAddress     NVARCHAR(255) NOT NULL,
+    CPR            INT NOT NULL,
+    ZipCode        INT NOT NULL,
+CONSTRAINT pk_Society PRIMARY KEY CLUSTERED (Soc_CVR),
+CONSTRAINT fk_Society FOREIGN KEY (ZipCode)
+    REFERENCES Municipality (Zipcode)
+    ON UPDATE CASCADE,
+CONSTRAINT fk_Society2 FOREIGN KEY (CPR)
+    REFERENCES Chairman (CPR)
+    ON UPDATE CASCADE)
+GO
+
+--
+-- Create Table    : 'Member'
+-- Name            :
+-- ID              :
+-- SocName         :
+-- Member_CPR      :
+-- Soc_CVR         :  (references Society.Soc_CVR)
+--
+CREATE TABLE Member (
+    Name           NVARCHAR(255) NOT NULL,
+    ID             INT NOT NULL,
+    SocName        NVARCHAR(255) NOT NULL,
+    Member_CPR     INT NOT NULL UNIQUE,
+    Soc_CVR        INT NOT NULL,
+CONSTRAINT pk_Member PRIMARY KEY CLUSTERED (Member_CPR),
+CONSTRAINT fk_Member FOREIGN KEY (Soc_CVR)
+    REFERENCES Society (Soc_CVR)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE)
+GO
+
+--
+-- Create Table    : 'Activity'
+-- Type            :
+-- Name            :
+-- ID              :
+-- Soc_CVR             :  (references Society.Soc_CVR)
+--
+CREATE TABLE Activity (
+    Type           NVARCHAR(255) NOT NULL,
+    Name           NVARCHAR(255) NOT NULL,
+    ID             INT NOT NULL UNIQUE,
+    Soc_CVR        INT NOT NULL,
+CONSTRAINT pk_Activity PRIMARY KEY CLUSTERED (ID),
+CONSTRAINT fk_Activity FOREIGN KEY (Soc_CVR)
+    REFERENCES Society (Soc_CVR)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE)
+GO
+
+--
+-- Create Table    : 'Booking'
+-- Soc_CVR         :  (references Society.Soc_CVR)
+-- Address         :  (references ActLocation.Address)
+-- BookingNr       :
+-- Access_Start    :
+-- Access_End      :
+--
+CREATE TABLE Booking (
+    Soc_CVR        INT NOT NULL,
+    Address        NVARCHAR(255) NOT NULL,
+    BookingNr      INT NOT NULL UNIQUE,
+    Access_Start   NVARCHAR(255) NOT NULL,
+    Access_End     NVARCHAR(255) NOT NULL,
+CONSTRAINT pk_Booking PRIMARY KEY CLUSTERED (Soc_CVR,Address,BookingNr),
+CONSTRAINT fk_Booking FOREIGN KEY (Soc_CVR)
+    REFERENCES Society (Soc_CVR)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+CONSTRAINT fk_Booking2 FOREIGN KEY (Address)
+    REFERENCES ActLocation (Address)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE)
+GO
+
+--
+-- Permissions for: 'public'
+--
+GRANT ALL ON Municipality TO public
+GO
+GRANT ALL ON Chairman TO public
+GO
+GRANT ALL ON ActLocation TO public
+GO
+GRANT ALL ON Society TO public
+GO
+GRANT ALL ON Member TO public
+GO
+GRANT ALL ON Activity TO public
+GO
+GRANT ALL ON Booking TO public
+GO
+

@@ -1,0 +1,37 @@
+INSERT INTO Municipality(MuniName, Zipcode)
+VALUES 
+('Brooklyn',11201),
+('Queens', 11004);
+
+INSERT INTO Chairman(FullName, CPR, Address)
+VALUES 
+('Daniel Boston',22114422,'Queens Avenue 13' ),
+('James Duke', 22121332, 'Kings Street 3' );
+
+INSERT INTO ActLocation(Type, Equipment, Capacity, Address, ZipCode, WaterFountain, Toilets, Chairs)
+VALUES 
+('Library', 'Books', 150, 'Moby Dick Street 15', 11201, 2, 5, 100 ),
+('Stadium', 'Field & Food', 8000,  'Green Bay Field 32', 11004, 8, 8, 6000),
+('Office ', 'Whiteboard & WIFI' , 80, 'Central Park Underground Tunnel 1',11201, 0, 1, 16);
+
+INSERT INTO Society(SocName, Soc_CVR, SocAddress, CPR, ZipCode)
+VALUES 
+('Lets go Football', 11554321, 'Touchdown Street 3', 22114422,11004),
+('Harry Potter Fellas', 11445123, 'Privet Drive 4', 22121332, 11201);
+
+INSERT INTO Member(Name, ID, SocName, Member_CPR, Soc_CVR)
+VALUES  
+('Mary May',15, 'Lets go Football',  112233, 11554321),
+('Collins Smith',21 , 'Lets go Football', 223344,11554321),
+('James Weasley',24 , 'Harry Potter Fellas', 555666, 11445123);
+
+INSERT INTO Activity(Type, Name, ID, Soc_CVR)
+VALUES 
+('Watching ','Soccer', 0315, 11554321),
+('Fighting', ' Wand battle for beginners', 0214, 11445123);
+
+INSERT INTO Booking(Soc_CVR, Address, BookingNr, Access_Start, Access_End)
+VALUES
+(11554321,'Central Park Underground Tunnel 1', 17, 01-03-2022, 03-03-2022),
+(11445123,'Moby Dick Street 15', 14, 04-11-2021, 06-11-2021),
+(11554321,'Green Bay Field 32', 6, 10-12-2021, 11-12-2021);

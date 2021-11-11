@@ -1,0 +1,53 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+entity society {
+    * id : INT <<generated>>
+    --
+    * name : VARCHAR(200)
+    * cvr : INT
+    * address : VARCHAR(200)
+    * activity : VARCHAR(200)
+}
+
+entity member {
+    * id : INT <<generated>>
+    --
+    * societyId : INT <<FK>>
+    * isChairman : BIT
+    * name : VARCHAR(200)
+    * cpr : INT
+    * address : VARCHAR(200)
+}
+
+entity room {
+    * id : INT <<generated>>
+    --
+    * limit : INT
+    * name : VARCHAR(200)
+    * address : VARCHAR(200)
+    * access : VARCHAR(200)
+}
+
+entity room_property {
+    * id : INT <<generated>>
+    --
+    * roomId : INT <<FK>>
+    * name : VARCHAR(200)
+}
+
+entity room_reservation {
+    * id : INT <<generated>>
+    --
+    * roomId : INT <<FK>>
+    * memberId : INT <<FK>>
+    * startTime : DATETIME
+    * endTime : DATETIME
+}
+
+member }o--|| society
+room_reservation }o--|| member
+room_reservation }o--|| room
+room_property }o--|| room
+
+@enduml

@@ -1,0 +1,13 @@
+SELECT Municipality.*, ActLocation.Address
+FROM ActLocation INNER JOIN
+        Municipality ON ActLocation.ZipCode = Municipality.ZipCode
+
+SELECT Society.Soc_CVR, Society.SocAddress, Society.CPR as 'ChairmanCPR', Activity.type
+FROM Activity INNER JOIN
+        Society ON Activity.Soc_CVR = Society.Soc_CVR
+
+SELECT ActLocation.Type, ActLocation.Address, Society.SocName, Society.CPR as 'ChairmanCPR', count(*) as Number_of_Bookings
+FROM Booking INNER JOIN
+        Society ON Booking.Soc_CVR = Society.Soc_CVR INNER JOIN
+        ActLocation ON Booking.Address = ActLocation.Address
+        GROUP BY ActLocation.Type, ActLocation.Address, Society.SocName, Society.CPR
