@@ -2,7 +2,7 @@ USE au653289
 
 
 -- Get all municipality information: rooms (addresses)
-SELECT room.id, room.name, room.address, municipality.name as municipality
+SELECT municipality.id as municipality_id, room.id as room_id, municipality.name as municipality, room.name as room, room.address as room_address
 FROM dbo.room
          JOIN municipality ON room.municipalityId = municipality.id
 

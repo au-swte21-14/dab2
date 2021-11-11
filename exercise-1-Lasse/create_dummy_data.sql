@@ -37,6 +37,6 @@ GO
 
 -- Create reservations
 INSERT INTO dbo.room_reservation(roomId, memberId, startTime, endTime)
-VALUES (1, 2, DATETIMEFROMPARTS(2021, 09, 22, 16, 0, 0, 0), DATETIMEFROMPARTS(2021, 09, 22, 20, 0, 0, 0)),
+VALUES (1, 3, DATETIMEFROMPARTS(2021, 09, 22, 16, 0, 0, 0), DATETIMEFROMPARTS(2021, 09, 22, 20, 0, 0, 0)),
        (2, 2, DATETIMEFROMPARTS(2021, 09, 21, 10, 0, 0, 0), DATETIMEFROMPARTS(2021, 09, 21, 12, 0, 0, 0))
 GO

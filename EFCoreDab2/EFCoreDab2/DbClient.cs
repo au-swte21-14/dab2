@@ -21,7 +21,6 @@ namespace EFCoreDab2
                 join room in _context.Rooms on municipality.Id equals room.Id*/
             return _context.Municipalities
                 .Include(municipality => municipality.Rooms);
-
         }
 
         public IIncludableQueryable<Society, Municipality> GetSocieties()
@@ -31,20 +30,20 @@ namespace EFCoreDab2
                     .Where(member => member.IsChairman == true))
                 .Include(society => society.Municipality);
         }
-        
+
         public IIncludableQueryable<Room, Municipality> GetRooms()
         {
             return _context.Rooms
                 .Include(room => room.Municipality);
         }
 
-        public IIncludableQueryable<Room, Society> GetBookedRooms()
+        public IIncludableQueryable<Room, IEnumerable<Member>> GetBookedRooms()
         {
             return _context.Rooms
-
                 .Include(room => room.RoomReservations)
                 .ThenInclude(roomRes => roomRes.Member)
-                .ThenInclude(member => member.Society);
+                .ThenInclude(member => member.Society)
+                .ThenInclude(society => society.Members.Where(member => member.IsChairman == true));
         }
     }
 }
