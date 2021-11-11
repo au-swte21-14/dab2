@@ -14,13 +14,23 @@ GO;
 USE au653289
 GO
 
+CREATE TABLE municipality
+(
+    id   INT IDENTITY (1,1) PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    cvr  INT          NOT NULL,
+);
+GO
+
 CREATE TABLE society
 (
-    id       INT IDENTITY (1,1) PRIMARY KEY,
-    name     VARCHAR(200) NOT NULL,
-    cvr      INT          NOT NULL,
-    address  VARCHAR(200) NOT NULL,
-    activity VARCHAR(200) NOT NULL
+    id             INT IDENTITY (1,1) PRIMARY KEY,
+    municipalityId INT          NOT NULL,
+    FOREIGN KEY (municipalityId) REFERENCES municipality (id),
+    name           VARCHAR(200) NOT NULL,
+    cvr            INT          NOT NULL,
+    address        VARCHAR(200) NOT NULL,
+    activity       VARCHAR(200) NOT NULL
 );
 GO
 
@@ -39,6 +49,8 @@ GO
 CREATE TABLE room
 (
     id      INT IDENTITY (1,1) PRIMARY KEY,
+    municipalityId INT          NOT NULL,
+    FOREIGN KEY (municipalityId) REFERENCES municipality (id),
     limit   INT DEFAULT -1,
     name    VARCHAR(200) NOT NULL,
     address VARCHAR(200) NOT NULL,

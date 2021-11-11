@@ -2,16 +2,17 @@ USE au653289
 GO
 
 -- Get all municipality information: rooms (addresses)
-
-SELECT room.id, room.name, room.address
+SELECT room.id, room.name, room.address, municipality.name as municipality
 FROM dbo.room
+         JOIN municipality ON room.municipalityId = municipality.id
 GO
 
 -- Get all societies (cvr, addresses and chairmen) by their activity
 
-SELECT society.id, society.cvr, society.address, society.activity, member.name as chairman
+SELECT society.id, society.cvr, society.name, society.address, society.activity, member.name as chairman, municipality.name as municipality
 FROM dbo.society
          JOIN member ON society.id = member.societyId
+         JOIN municipality on municipality.id = society.municipalityId
 WHERE member.isChairman = 1
 ORDER BY society.activity
 GO

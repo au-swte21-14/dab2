@@ -1,11 +1,16 @@
 USE au653289
 GO
 
+-- Create municipality
+INSERT INTO dbo.municipality (name, cvr)
+VALUES ('Magnus kommune', 42200011),
+       ('Lasses kommune', 42200019)
+GO
 
 -- Create societies
-INSERT INTO dbo.society (name, cvr, address, activity)
-VALUES ('Pet society', 42200010, 'Facebook app 1', 'Internat'),
-       ('Hurlumhejhuset', 42200018, 'Aldersrovej 26', N'Bofællesskab')
+INSERT INTO dbo.society (name, municipalityId, cvr, address, activity)
+VALUES ('Pet society', 1, 42200010, 'Facebook app 1', 'Internat'),
+       ('Hurlumhejhuset', 2, 42200018, 'Aldersrovej 26', N'Bofællesskab')
 GO
 
 -- Create members
@@ -16,10 +21,10 @@ VALUES (1, 1, 'Mark Marsvin', 0105882521, 'Dyrevej 25'),
 GO
 
 -- Create rooms and properties
-INSERT INTO dbo.room(limit, name, address, access)
-VALUES (20, N'Mødelokale', N'Rumallé 1', N'Brækjern'),
-       (3, N'Toilet', N'Rumallé 1', N'Åbent'),
-       (-1, N'Sportshal', N'Motionsvej 24', N'2426')
+INSERT INTO dbo.room(limit, municipalityId, name, address, access)
+VALUES (20, 1, N'Mødelokale', N'Rumallé 1', N'Brækjern'),
+       (3, 1, N'Toilet', N'Rumallé 1', N'Åbent'),
+       (-1, 2, N'Sportshal', N'Motionsvej 24', N'2426')
 GO
 INSERT INTO dbo.room_property(roomId, name)
 VALUES (1, 'WiFi'),
