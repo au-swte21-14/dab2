@@ -18,7 +18,7 @@ namespace EFCoreDab2.Models
 
         public override string ToString()
         {
-            var a = $"Id: {Id} RoomId: {RoomId} MemberId: {MemberId} StartTime: {StartTime} EndTime: {EndTime}\n";
+            var a = $"RoomResId: {Id} RoomId: {RoomId} MemberId: {MemberId} StartTime: {StartTime} EndTime: {EndTime}\n";
             return a;
         }
     }
