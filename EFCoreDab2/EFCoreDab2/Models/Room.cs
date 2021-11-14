@@ -38,6 +38,5 @@ namespace EFCoreDab2.Models
             a += String.Join("\n", RoomReservations);
             return a;
         }
-        
     }
 }
