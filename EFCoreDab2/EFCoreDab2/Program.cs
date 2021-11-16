@@ -74,9 +74,5 @@ namespace EFCoreDab2
             }
             Console.WriteLine(output);
         }
-
-        
-        
-
     }
 }

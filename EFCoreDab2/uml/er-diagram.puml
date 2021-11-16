@@ -45,6 +45,9 @@ entity room_reservation {
     * endTime : DATETIME
 }
 
+entity access
+
+
 
 member }o--|| society
 room_reservation }o--|| member
