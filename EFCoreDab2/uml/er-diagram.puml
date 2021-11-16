@@ -45,7 +45,13 @@ entity room_reservation {
     * endTime : DATETIME
 }
 
-entity access
+entity access {
+    * id : INT <<generated>>
+    --
+    * memberId : INT <<FK>>
+    * phoneNr : INT
+    * driverLicens
+}
 
 
 
