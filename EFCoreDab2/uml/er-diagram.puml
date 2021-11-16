@@ -53,8 +53,6 @@ entity access {
     * driverLicense : INT
 }
 
-
-
 member }o--|| society
 room_reservation }o--|| member
 room_reservation }o--|| room

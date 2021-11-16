@@ -311,8 +311,33 @@ namespace EFCoreDab2.Models
                 entity.HasOne(d => d.Member)
                     .WithOne(p => p.Access)
                     .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasData(new Access
+                {
+                    Id = 1, MemberId = 1, DriverLicense = 123456789, PhoneNr = 88888888
+                });
+                entity.HasData(new Access
+                {
+                    Id = 2, MemberId = 2, DriverLicense = 654125678, PhoneNr = 22222222
+                });
             });
-            
+
+            modelBuilder.Entity<AccessKey>(entity =>
+            {
+                entity.HasData(new AccessKey
+                {
+                    Id = 1, RoomId = 1, Code = "1234"
+                });
+                entity.HasData(new AccessKey
+                {
+                    Id = 2, RoomId = 2, Code = "5678"
+                });
+                entity.HasData(new AccessKey
+                {
+                    Id = 3, RoomId = 3, Code = "1a2b3c"
+                });
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
 
