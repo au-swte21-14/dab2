@@ -17,7 +17,7 @@ namespace EFCoreDab2.Models
         {
         }
 
-        private string _optionsString = "Server=localhost;Database=au653289;User ID=sa;Password=Abc12345";
+        private string _optionsString;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
