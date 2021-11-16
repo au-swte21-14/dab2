@@ -1,6 +1,14 @@
 @startuml
 !include er-diagram.puml
 
+entity access {
+    * id : INT <<generated>>
+    --
+    * memberId : INT <<FK>>
+    * phoneNr : INT
+    * driverLicense : INT
+}
+
 entity access_key {
     * id : INT <<generated>>
     --
@@ -13,5 +21,6 @@ entity room {
 }
 
 room ||--o| access_key
+member ||--o| access
 
 @enduml

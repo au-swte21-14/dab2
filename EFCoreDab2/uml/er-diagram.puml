@@ -1,9 +1,17 @@
 @startuml
 'https://plantuml.com/class-diagram
 
+entity municipality {
+    * id : INT <<generated>>
+    --
+    * name : VARCHAR(200)
+    * cvr : INT
+}
+
 entity society {
     * id : INT <<generated>>
     --
+    * municipalityId : INT <<FK>>
     * name : VARCHAR(200)
     * cvr : INT
     * address : VARCHAR(200)
@@ -23,6 +31,7 @@ entity member {
 entity room {
     * id : INT <<generated>>
     --
+    * municipalityId : INT <<FK>>
     * limit : INT
     * name : VARCHAR(200)
     * address : VARCHAR(200)
@@ -45,18 +54,11 @@ entity room_reservation {
     * endTime : DATETIME
 }
 
-entity access {
-    * id : INT <<generated>>
-    --
-    * memberId : INT <<FK>>
-    * phoneNr : INT
-    * driverLicense : INT
-}
-
 member }o--|| society
 room_reservation }o--|| member
 room_reservation }o--|| room
 room_property }o--|| room
-member ||--o| access
+municipality ||--o{ society
+municipality ||--o{ room
 
 @enduml
