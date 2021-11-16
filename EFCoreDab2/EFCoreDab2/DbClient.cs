@@ -46,5 +46,23 @@ namespace EFCoreDab2
                 .ThenInclude(society => society.Members.Where(member => member.IsChairman == true))
                 .Where(p => p.RoomReservations.Count > 0);
         }
+
+        public IIncludableQueryable<Access, Member> GetKeyResponsible()
+        {
+            return _context.Access.Include(a => a.Member);
+        }
+
+        public IQueryable<Room> GetBookedRoomsWithKeyResponsible(int id)
+        {
+            var keyResponsibleSociety = _context.Societies
+                .Include(s => s.Members.Where(m => m.Id == id))
+                .First(s => s.Members.Count > 0);
+
+            return _context.Rooms
+                .Include(room => room.RoomReservations)
+                .ThenInclude(roomRes => roomRes.Member)
+                .ThenInclude(member => member.Society)
+                .Where(r => r.RoomReservations.Any(res => res.Member.Society.Id == keyResponsibleSociety.Id));
+        }
     }
 }

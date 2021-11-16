@@ -1,0 +1,17 @@
+@startuml
+!include er-diagram.puml
+
+entity access_key {
+    * id : INT <<generated>>
+    --
+    * roomId : INT <<FK>>
+    * code : VARCHAR(200)
+}
+
+entity room {
+    * key_pickup_location : VARCHAR(200)
+}
+
+room ||--o| access_key
+
+@enduml

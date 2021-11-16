@@ -36,6 +36,7 @@ namespace EFCoreDab2.Models
         public virtual DbSet<RoomReservation> RoomReservations { get; set; }
         public virtual DbSet<Society> Societies { get; set; }
         public virtual DbSet<Access> Access { get; set; }
+        public virtual DbSet<AccessKey> AccessKeys { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -213,6 +214,13 @@ namespace EFCoreDab2.Models
                     .HasConstraintName("FK__society__municip__2BFE89A6");
             });
 
+            modelBuilder.Entity<Access>(entity =>
+            {
+                entity.HasOne(d => d.Member)
+                    .WithOne(p => p.Access)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+            });
+            
             OnModelCreatingPartial(modelBuilder);
         }
 

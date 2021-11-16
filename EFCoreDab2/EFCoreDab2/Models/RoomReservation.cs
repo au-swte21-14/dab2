@@ -20,7 +20,7 @@ namespace EFCoreDab2.Models
         public override string ToString()
         {
             var society = Member?.Society;
-            var chairman = society?.Members?.First(m => m.IsChairman == true);
+            var chairman = society?.Members?.FirstOrDefault(m => m.IsChairman == true);
             var a =
                 $"Booker: {Member?.Name}, Society: {society?.Name}, SocietyChairman: {chairman?.Name}, StartTime: {StartTime}, EndTime: {EndTime}\n";
             return a;

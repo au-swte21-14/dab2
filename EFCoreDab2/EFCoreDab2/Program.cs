@@ -37,7 +37,7 @@ namespace EFCoreDab2
                     options = o;
                 }); 
             DbClient client = new DbClient(options.Server, options.Database, options.Username, options.Password);
-            string output = "Available commands: Municipalities, Societies, BookedRooms, All";
+            string output = "Available commands: Municipalities, Societies, BookedRooms, KeyResponsible, All";
             switch (options.Command)
             {
                 case "All":
@@ -68,6 +68,18 @@ namespace EFCoreDab2
                 case "BookedRooms":
                 {
                     var a = client.GetBookedRooms().Select(room => room.GetBookedRooms());
+                    output = String.Join("\n", a);
+                    break;
+                }
+                case "KeyResponsible":
+                {
+                    Console.WriteLine("Key responsible: ");
+                    var res = client.GetKeyResponsible();
+                    Console.WriteLine(String.Join("\n", res));
+                    
+                    Console.Write("Enter id of key responsible: ");
+                    int id = Convert.ToInt32(Console.ReadLine());
+                    var a = client.GetBookedRoomsWithKeyResponsible(id).Select(room => room.GetBookedRooms());
                     output = String.Join("\n", a);
                     break;
                 }

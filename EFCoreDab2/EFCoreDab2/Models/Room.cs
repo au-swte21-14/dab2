@@ -21,7 +21,8 @@ namespace EFCoreDab2.Models
         public string Name { get; set; }
         public string Address { get; set; }
         public string Access { get; set; }
-
+        public virtual ICollection<AccessKey> AccessKeys { get; set; }
+        public string KeyPickupLocation { get; set; }
         public virtual Municipality Municipality { get; set; }
         public virtual ICollection<RoomProperty> RoomProperties { get; set; }
         public virtual ICollection<RoomReservation> RoomReservations { get; set; }

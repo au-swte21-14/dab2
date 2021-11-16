@@ -25,9 +25,9 @@ namespace EFCoreDab2.Models
 
         public override string ToString()
         {
-            var chairman = Members.First(m => m.IsChairman == true);
+            var chairman = Members.FirstOrDefault(m => m.IsChairman == true);
             var a = $"SocietyId: {Id}, Name: {Name}, " +
-                    $"Cvr: {Cvr}, Address: {Address}, Activity: {Activity}, Chairman: {chairman.Name}, Municipality: {Municipality?.Name}";
+                    $"Cvr: {Cvr}, Address: {Address}, Activity: {Activity}, Chairman: {chairman?.Name}, Municipality: {Municipality?.Name}";
 
             return a;
         }
