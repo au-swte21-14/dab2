@@ -50,7 +50,7 @@ entity access {
     --
     * memberId : INT <<FK>>
     * phoneNr : INT
-    * driverLicens
+    * driverLicens : INT
 }
 
 
