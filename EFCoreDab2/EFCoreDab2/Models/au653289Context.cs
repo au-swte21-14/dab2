@@ -17,11 +17,11 @@ namespace EFCoreDab2.Models
         {
         }
 
-        private string _optionsString;
+        private string _optionsString = "Server=localhost;Database=au653289;User ID=sa;Password=Abc12345";
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(_optionsString);
-            
         }
 
         public au653289Context(string server, string database, string user, string password)
@@ -35,6 +35,7 @@ namespace EFCoreDab2.Models
         public virtual DbSet<RoomProperty> RoomProperties { get; set; }
         public virtual DbSet<RoomReservation> RoomReservations { get; set; }
         public virtual DbSet<Society> Societies { get; set; }
+        public virtual DbSet<Access> Access { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
