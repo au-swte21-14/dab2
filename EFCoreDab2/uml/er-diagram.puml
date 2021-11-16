@@ -59,5 +59,6 @@ member }o--|| society
 room_reservation }o--|| member
 room_reservation }o--|| room
 room_property }o--|| room
+member ||--o| access
 
 @enduml
