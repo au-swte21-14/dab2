@@ -79,7 +79,7 @@ namespace EFCoreDab2
                     
                     Console.Write("Enter id of key responsible: ");
                     int id = Convert.ToInt32(Console.ReadLine());
-                    var a = client.GetBookedRoomsWithKeyResponsible(id).Select(room => room.GetBookedRooms());
+                    var a = client.GetBookedRoomsWithKeyResponsible(id).Select(room => room.GetBookedRoomsWithAccess());
                     output = String.Join("\n", a);
                     break;
                 }

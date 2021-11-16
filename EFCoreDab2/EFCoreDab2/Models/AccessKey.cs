@@ -5,5 +5,10 @@ namespace EFCoreDab2.Models
         public int Id { get; set; }
         public int RoomId { get; set; }
         public string Code { get; set; }
+
+        public override string ToString()
+        {
+            return Code;
+        }
     }
 }

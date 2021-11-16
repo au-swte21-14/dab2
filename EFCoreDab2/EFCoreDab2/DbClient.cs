@@ -55,10 +55,11 @@ namespace EFCoreDab2
         public IQueryable<Room> GetBookedRoomsWithKeyResponsible(int id)
         {
             var keyResponsibleSociety = _context.Societies
-                .Include(s => s.Members.Where(m => m.Id == id))
-                .First(s => s.Members.Count > 0);
+                .Include(s => s.Members)
+                .FirstOrDefault(s => s.Members.Any(m => m.Id == id));
 
             return _context.Rooms
+                .Include(room => room.AccessKeys)
                 .Include(room => room.RoomReservations)
                 .ThenInclude(roomRes => roomRes.Member)
                 .ThenInclude(member => member.Society)

@@ -7,5 +7,11 @@ namespace EFCoreDab2.Models
         public virtual Member Member { get; set; }
         public int PhoneNr { get; set; }
         public int DriverLicense { get; set; }
+
+        public override string ToString()
+        {
+            return
+                $"MemberId: {MemberId}, MemberName: {Member?.Name}, PhoneNr: {PhoneNr}, DriverLicense: {DriverLicense}";
+        }
     }
 }

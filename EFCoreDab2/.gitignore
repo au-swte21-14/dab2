@@ -1,3 +1,8 @@
 .idea
 bin
 obj
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz

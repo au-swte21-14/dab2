@@ -29,13 +29,42 @@ namespace EFCoreDab2.Models
 
         public override string ToString()
         {
-            var a = $"Name: {Name}, Id: {Id}, Limit: {Limit}, Address {Address}, Access: {Access}";
+            var a = $"Name: {Name}, Id: {Id}, Limit: {Limit}, Address {Address}";
+            if (KeyPickupLocation != null)
+            {
+                a += $", KeyPickupLocation: {KeyPickupLocation}";
+            }
+
+            if (AccessKeys.Count > 0)
+            {
+                String.Join(",", AccessKeys);
+            }
+
             return a;
         }
 
         public string GetBookedRooms()
         {
             var a = $"Name: {Name}, Address: {Address}\n";
+            a += String.Join("\n", RoomReservations);
+            return a;
+        }
+        
+        public string GetBookedRoomsWithAccess()
+        {
+            var a = $"Name: {Name}, Address: {Address}";
+            if (KeyPickupLocation != null)
+            {
+                a += $", KeyPickupLocation: {KeyPickupLocation}";
+            }
+
+            if (AccessKeys.Count > 0)
+            {
+                a += ", Access keys: ";
+                a += String.Join(",", AccessKeys);
+            }
+
+            a += "\n";
             a += String.Join("\n", RoomReservations);
             return a;
         }
