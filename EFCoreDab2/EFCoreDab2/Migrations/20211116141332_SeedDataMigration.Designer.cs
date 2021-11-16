@@ -4,14 +4,16 @@ using EFCoreDab2.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCoreDab2.Migrations
 {
     [DbContext(typeof(au653289Context))]
-    partial class au653289ContextModelSnapshot : ModelSnapshot
+    [Migration("20211116141332_SeedDataMigration")]
+    partial class SeedDataMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,26 +43,6 @@ namespace EFCoreDab2.Migrations
                     b.HasIndex("MemberId");
 
                     b.ToTable("Access");
-                });
-
-            modelBuilder.Entity("EFCoreDab2.Models.AccessKey", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoomId");
-
-                    b.ToTable("AccessKeys");
                 });
 
             modelBuilder.Entity("EFCoreDab2.Models.Member", b =>
@@ -194,9 +176,6 @@ namespace EFCoreDab2.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(200)")
                         .HasColumnName("address");
-
-                    b.Property<string>("KeyPickupLocation")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Limit")
                         .ValueGeneratedOnAdd()
@@ -441,15 +420,6 @@ namespace EFCoreDab2.Migrations
                     b.Navigation("Member");
                 });
 
-            modelBuilder.Entity("EFCoreDab2.Models.AccessKey", b =>
-                {
-                    b.HasOne("EFCoreDab2.Models.Room", null)
-                        .WithMany("AccessKeys")
-                        .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("EFCoreDab2.Models.Member", b =>
                 {
                     b.HasOne("EFCoreDab2.Models.Society", "Society")
@@ -527,8 +497,6 @@ namespace EFCoreDab2.Migrations
 
             modelBuilder.Entity("EFCoreDab2.Models.Room", b =>
                 {
-                    b.Navigation("AccessKeys");
-
                     b.Navigation("RoomProperties");
 
                     b.Navigation("RoomReservations");
