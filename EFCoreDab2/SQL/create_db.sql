@@ -89,10 +89,3 @@ CREATE TABLE room_reservation
     endTime   DATETIME NOT NULL
 );
 GO
-
-CREATE TABLE Access
-(
-    KeyId     INT IDENTITY (1,1) PRIMARY KEY,
-    MemberID  INT,
-    FOREIGN KEY (MemberID) REFERENCES member (id)
-)
