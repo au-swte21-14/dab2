@@ -4,14 +4,16 @@ using EFCoreDab2.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCoreDab2.Migrations
 {
     [DbContext(typeof(au653289Context))]
-    partial class au653289ContextModelSnapshot : ModelSnapshot
+    [Migration("20211116143836_SeedDataMigration2")]
+    partial class SeedDataMigration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
