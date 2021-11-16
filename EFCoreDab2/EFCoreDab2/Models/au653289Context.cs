@@ -17,7 +17,7 @@ namespace EFCoreDab2.Models
         {
         }
 
-        private string _optionsString;
+        private string _optionsString = Environment.GetEnvironmentVariable("DATABASE");
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
